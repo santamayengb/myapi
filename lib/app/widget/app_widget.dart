@@ -24,17 +24,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ContactBody extends StatelessWidget {
+class ContactBody extends StatefulWidget {
   const ContactBody({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ContactBody> createState() => _ContactBodyState();
+}
+
+class _ContactBodyState extends State<ContactBody> {
+  @override
+  void initState() {
+    context.read<ContactCubit>().getContact();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = context.watch<ContactCubit>();
-    final 
-
-    final status = state.;
+    final status = state.state.status;
+    final data = state.state.contactModel;
 
     log(status.toString());
 
@@ -48,7 +58,18 @@ class ContactBody extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       case Status.loaded:
-        return Container();
+        return Scaffold(
+          body: ListView.builder(
+            itemCount: data!.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(data[index].name),
+                subtitle: Text(data[index].number),
+              );
+            },
+          ),
+          bottomSheet: const Text("data"),
+        );
 
       case Status.error:
         return const Center(

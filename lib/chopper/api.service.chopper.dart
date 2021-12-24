@@ -22,4 +22,11 @@ class _$ApiService extends ApiService {
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<List<ContactModel>, ContactModel>($request);
   }
+
+  @override
+  Future<ContactModel> addNewContact() {
+    final $url = '/8vixnqsentduj';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send($request);
+  }
 }

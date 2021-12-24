@@ -9,4 +9,7 @@ abstract class ApiService extends ChopperService {
 
   @Get(path: '/8vixnqsentduj')
   Future<Response<List<ContactModel>>> getContacts();
+
+  @Post(path: '/8vixnqsentduj')
+  Future<ContactModel> addNewContact();
 }

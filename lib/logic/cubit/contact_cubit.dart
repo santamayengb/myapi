@@ -28,4 +28,6 @@ class ContactCubit extends Cubit<ContactState> {
       emit(const ContactState(status: Status.error));
     }
   }
+
+  Future<void> addNew() async {}
 }
